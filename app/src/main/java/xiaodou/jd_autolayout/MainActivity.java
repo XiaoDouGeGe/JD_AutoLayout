@@ -25,13 +25,19 @@ public class MainActivity extends FragmentActivity {
 
         // 1.初始化TabHost
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+//        mTabHost.setup();
         mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
+
+//        LocalActivityManager mLocalActivityManager = new LocalActivityManager(this, false);
+//        mLocalActivityManager.dispatchCreate(savedInstanceState);
+//        mTabHost.setup(mLocalActivityManager);
+//        mTabHost.setup(this.getLocalActivityManager());
 
         // 2.新建TabSpec
         TabHost.TabSpec mTabSpec = mTabHost.newTabSpec("1214");
         TabView tabView1 = new TabView(this);
         tabView1.setText("12月14日");
-//        tabView1.setTextColor(Color.parseColor("#F02B2B"));
+        tabView1.setTextColor(Color.parseColor("#F02B2B"));
         mTabSpec.setIndicator(tabView1);
         // 3.添加TabSpec
         mTabHost.addTab(mTabSpec, MyFragment1.class, null);
@@ -52,7 +58,9 @@ public class MainActivity extends FragmentActivity {
         TabView tabView4 = new TabView(this);
         tabView4.setText("12月18日");
         mTabSpec.setIndicator(tabView4);
+//        mTabSpec.setContent(new Intent(this, TabContentActivity1.class));
         mTabHost.addTab(mTabSpec, MyFragment4.class, null);
+
 
 
         mTabHost.setCurrentTabByTag("1214"); // 设置第一次打开时默认显示的标签，
